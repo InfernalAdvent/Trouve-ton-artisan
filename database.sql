@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 mai 2025 à 22:17
+-- Généré le : jeu. 22 mai 2025 à 02:50
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -30,11 +30,34 @@ SET time_zone = "+00:00";
 CREATE TABLE `artisans` (
   `id` int(11) NOT NULL,
   `Nom` varchar(100) NOT NULL,
-  `Spécialité` varchar(100) NOT NULL,
+  `specialite_id` int(11) NOT NULL,
   `Note` decimal(2,1) NOT NULL,
   `Ville` varchar(100) NOT NULL,
-  `A propos` text NOT NULL,
+  `A_propos` text NOT NULL,
   `Email` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `catégories`
+--
+
+CREATE TABLE `catégories` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `spécialités`
+--
+
+CREATE TABLE `spécialités` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `categorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -48,6 +71,18 @@ ALTER TABLE `artisans`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `catégories`
+--
+ALTER TABLE `catégories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `spécialités`
+--
+ALTER TABLE `spécialités`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -55,6 +90,18 @@ ALTER TABLE `artisans`
 -- AUTO_INCREMENT pour la table `artisans`
 --
 ALTER TABLE `artisans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `catégories`
+--
+ALTER TABLE `catégories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `spécialités`
+--
+ALTER TABLE `spécialités`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
