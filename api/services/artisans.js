@@ -1,4 +1,5 @@
 const { Artisan, Specialite, Categorie } = require('../models');
+const { Op } = require('sequelize');
 
 const findArtisansByCategorie = async (categorieId) => {
   return await Artisan.findAll({
@@ -18,6 +19,40 @@ const findArtisansByCategorie = async (categorieId) => {
   });
 };
 
+const getTopArtisans = async () => {
+  const artisans = await Artisan.findAll({
+    include: [
+      {
+        model: Specialite,
+        attributes: ['nom'],
+      }
+    ],
+    order: [['Note', 'DESC']],
+    limit: 3,
+    attributes: ['Nom', 'Note', 'Ville']
+  });
+
+  return artisans.map(artisan => ({
+    Nom: artisan.Nom,
+    Note: artisan.Note,
+    Specialite: artisan.spécialité.nom,
+    Ville: artisan.Ville,
+  }));
+}
+
+const searchArtisansByName = async (nom) => {
+  return await Artisan.findAll({
+    where: {
+      Nom: {
+        [Op.like]: `${nom}%`
+      }
+    },
+    limit: 10,
+  });
+}
+
 module.exports = {
-  findArtisansByCategorie
+  findArtisansByCategorie,
+  getTopArtisans,
+  searchArtisansByName
 };
