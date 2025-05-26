@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Artisan = require('../models/artisans');
+const artisansController = require('../controllers/artisansController');
 
-router.get('/', async (req, res) => {
-  try {
-    const artisans = await Artisan.findAll();
-    res.json(artisans);
-  } catch (error) {
-    res.status(500).json({ message: 'Erreur lors de la récupération des artisans', error });
-  }
-});
+router.get('/top', artisansController.getTopArtisans);
+router.get('/search', artisansController.searchArtisansByName);
+router.get('/:id', artisansController.getArtisanById);
 
 module.exports = router;
