@@ -51,8 +51,21 @@ const searchArtisansByName = async (nom) => {
   });
 }
 
+const getArtisanById = async (artisanId) => {
+  return await Artisan.findOne({
+    where: { id: artisanId },
+    include: [
+      {
+        model: Specialite,
+        include: [Categorie]
+      }
+    ]
+  });
+};
+
 module.exports = {
   findArtisansByCategorie,
   getTopArtisans,
-  searchArtisansByName
+  searchArtisansByName,
+  getArtisanById
 };

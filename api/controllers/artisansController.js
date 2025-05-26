@@ -33,8 +33,26 @@ const searchArtisansByName = async (req, res) => {
   }
 }
 
+const getArtisanById = async (req, res) => {
+  const artisanId = req.params.id;
+  console.log("ID reçu :", artisanId);
+
+  try {
+    const artisan = await artisanService.getArtisanById(artisanId);
+    console.log("Résultat trouvé :", artisan);
+    if (!artisan) {
+      return res.status(404).json({ error: 'Artisan non trouvé' });
+    }
+    res.status(200).json(artisan);
+  } catch (err) {
+    console.error("Erreur serveur :", err);
+    res.status(500).json({ error: 'Erreur serveur', err });
+  }
+};
+
 module.exports = {
   getArtisansByCategorie,
   getTopArtisans,
-  searchArtisansByName
+  searchArtisansByName,
+  getArtisanById
 };
