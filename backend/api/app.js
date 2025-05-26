@@ -23,7 +23,7 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/categorie', categorieRouter);
+app.use('/categories', categorieRouter);
 app.use('/artisans', artisanRouter)
 
 app.listen(3000, () => {
