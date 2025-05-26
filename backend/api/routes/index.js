@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use('/categorie', categorieRoute);
+router.use('/categories', categorieRoute);
 router.use('/artisans', artisanRoute)
 
 module.exports = router;
