@@ -24,14 +24,21 @@ const getTopArtisans = async (req, res) => {
 
 const searchArtisansByName = async (req, res) => {
   const nom = req.query.nom || '';
+  console.log("Nom recherché :", nom); // Log pour débogage
+
+    if (!nom.trim()) {
+    return res.status(400).json({ error: 'Le paramètre nom est requis' });
+  }
+
   try {
     const artisans = await artisanService.searchArtisansByName(nom);
+    console.log("Résultats trouvés :", artisans); // Log pour vérifier les résultats
     res.json(artisans);
-  } catch(err) {
+  } catch (err) {
     console.error('Erreur lors de la recherche des artisans :', err);
-    res.status(500).json({error: 'Erreur serveur'});
+    res.status(500).json({ error: 'Erreur serveur' });
   }
-}
+};
 
 const getArtisanById = async (req, res) => {
   const artisanId = req.params.id;
