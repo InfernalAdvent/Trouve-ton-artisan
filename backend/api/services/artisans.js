@@ -44,7 +44,7 @@ const searchArtisansByName = async (nom) => {
   return await Artisan.findAll({
     where: {
       Nom: {
-        [Op.like]: `${nom}%`
+        [Op.like]: `%${nom}%`
       }
     },
     limit: 10,
