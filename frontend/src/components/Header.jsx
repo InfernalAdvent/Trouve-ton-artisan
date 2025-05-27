@@ -41,7 +41,7 @@ export default function Header() {
   }, [search]);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50" >
+    <header className="bg-white shadow-md sticky top-0 z-50 h-28" >
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
@@ -51,7 +51,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 flex-1 justify-center">
           {categories.map((cat, index) => (
-            <NavLink key={index} to={`/categorie/${cat.nom}`} className="text-primaryBlue hover:text-secondaryBlue font-medium">
+            <NavLink key={index} to={`/categorie/${cat.nom}`} className="text-primaryBlue font-bold hover:text-secondaryBlue">
               {cat.nom}
             </NavLink>
           ))}
@@ -90,7 +90,7 @@ export default function Header() {
             <NavLink
               key={index}
               to={`/categorie/${cat.nom}`}
-              className="block text-primaryBlue font-medium py-1"
+              className="block text-primaryBlue py-1"
               onClick={() => setMobileMenuOpen(false)}
             >
               {cat.nom}

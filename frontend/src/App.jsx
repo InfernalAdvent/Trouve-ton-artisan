@@ -3,6 +3,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Header from './components/header.jsx'
+import Footer from './components/Footer.jsx'
+import Blank from './pages/Blank.jsx'
 
 function Home() {
   const [count, setCount] = useState(0);
@@ -48,16 +50,19 @@ function About() {
 
 function App() {
   return (
-    <div class="flex flex-col min-h-screen">
-      <Header/>
+    <div className="flex flex-col min-h-screen">
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/blank" element={<Blank />} /> {/* Assurez-vous de l'orthographe correcte */}
         </Routes>
       </main>
+      <Footer />
     </div>
-  )
+  );
 }
+
 
 export default App
