@@ -1,51 +1,65 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Header from './components/header.jsx'
-import Footer from './components/Footer.jsx'
-import Blank from './pages/Blank.jsx'
+import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import artisanImage from './assets/homme-travaillant-argile-vue-cote.jpg';
+import Header from './components/header.jsx';
+import Footer from './components/Footer.jsx';
+import TopArtisansCard from './components/TopArtisansCard.jsx';
+import Blank from './pages/Blank.jsx';
+import api from "./api/axios";
 
 function Home() {
-  const [count, setCount] = useState(0);
+  const [topArtisans, setTopArtisans] = useState([]);
+
+  useEffect(() => {
+    const fetchTopArtisans = async () => {
+      try {
+        const res = await api.get("/artisans/top");
+        setTopArtisans(res.data);
+      } catch (err) {
+        console.error("Erreur chargement catégories :", err);
+      }
+    };
+    fetchTopArtisans();
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center space-y-6 p-6">
-      <div className="flex space-x-6">
-        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
-          <img src={viteLogo} className="w-24 h-24" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="w-24 h-24" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-4xl font-bold">Vite + React</h1>
-      <div className="card bg-gray-100 p-6 rounded shadow-md flex flex-col items-center space-y-4">
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          onClick={() => setCount(count + 1)}
-        >
-          count is {count}
-        </button>
-        <p className="text-center">
-          Edit <code className="bg-gray-200 px-1 rounded">src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs text-center text-gray-600 max-w-sm font-graphik">
-        Click on the Vite and React logos to learn more
-      </p>
-      <Link
-        to="/about"
-        className=" text-blue-600 hover:underline"
-      >
-        Go to About page
-      </Link>
+    <div>
+      <h1 className="max-w-7xl mx-auto py-12 text-3xl sm:text-4xl md:text-5xl font-bold text-primaryBlue text-left">
+        Comment trouver mon artisan ?
+    </h1>
+        <div className="flex flex-row items-center gap-20  w-full max-w-6xl mx-auto p-12">
+          <img
+            src={artisanImage}
+            alt="Illustration artisan travaillant l'argile"
+            className="w-1/2 h-auto shadow-md object-cover"
+          />
+          <ul className="text-sm sm:text-lg text-secondaryGrey w-1/2">
+            <li className="mb-5"> <span className="font-bold">1.</span>Choisir la catégorie d'artisanat dans le menu</li>
+            <li className="mb-5"> <span className="font-bold">2.</span>Choisir un artisan</li>
+            <li className="mb-5"> <span className="font-bold">3.</span>Le contacter via le formulaire de contact</li>
+            <li className="mb-5"> <span className="font-bold">4.</span>Une réponse sera apportée sous 48h</li>
+          </ul>
+        </div>
+        <div className="w-full flex flex-col items-center p-12 mb-6">
+        <h2 className="text-4xl font-bold text-primaryBlue mb-10">Artisans du mois</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {topArtisans.map((artisan, index) => {
+              const isLast = index === topArtisans.length - 1;
+              const isOddCount = topArtisans.length % 2 !== 0;
+              const extraClasses = isOddCount && isLast 
+              ? "sm:col-span-2 sm:justify-self-center md:col-span-1 md:justify-self-auto"
+              : "";
+
+              return (
+                <div key={index} className={extraClasses}>
+                  <TopArtisansCard artisan={artisan} />
+                </div>
+                );
+              })}
+          </div>
+        </div>
     </div>
-  )
-}
-
-
-function About() {
-  return <h2>About page</h2>
+  );
 }
 
 function App() {
@@ -55,8 +69,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blank" element={<Blank />} /> {/* Assurez-vous de l'orthographe correcte */}
+          <Route path="/blank" element={<Blank />} />
         </Routes>
       </main>
       <Footer />
@@ -64,5 +77,4 @@ function App() {
   );
 }
 
-
-export default App
+export default App;
