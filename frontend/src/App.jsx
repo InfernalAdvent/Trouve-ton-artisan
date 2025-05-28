@@ -5,6 +5,7 @@ import Header from './components/header.jsx';
 import Footer from './components/Footer.jsx';
 import TopArtisansCard from './components/TopArtisansCard.jsx';
 import Blank from './pages/Blank.jsx';
+import Categorie from './pages/Categorie.jsx';
 import api from "./api/axios";
 
 function Home() {
@@ -42,12 +43,12 @@ function Home() {
         </div>
         <div className="w-full flex flex-col items-center p-12 mb-6">
         <h2 className="text-4xl font-bold text-primaryBlue mb-10">Artisans du mois</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {topArtisans.map((artisan, index) => {
               const isLast = index === topArtisans.length - 1;
               const isOddCount = topArtisans.length % 2 !== 0;
               const extraClasses = isOddCount && isLast 
-              ? "sm:col-span-2 sm:justify-self-center md:col-span-1 md:justify-self-auto"
+              ? "md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto"
               : "";
 
               return (
@@ -66,10 +67,11 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main>
+      <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blank" element={<Blank />} />
+          <Route path="/categorie/:id" element={<Categorie/>} />
         </Routes>
       </main>
       <Footer />

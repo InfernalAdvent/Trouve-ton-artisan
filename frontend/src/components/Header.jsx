@@ -12,17 +12,18 @@ export default function Header() {
 
   // Fetch des catégories
   useEffect(() => {
-  const fetchCategories = async () => {
-    try {
-      // Teste une requête axios directement
-      const res = await api.get("/categories"); // Utilise l'URL de ton backend
-      setCategories(res.data);
-    } catch (err) {
-      console.error("Erreur chargement catégories :", err);
-    }
-  };
-  fetchCategories();
-}, []);
+    const fetchCategories = async () => {
+      try {
+        const res = await api.get("/categories");
+
+        setCategories(res.data);
+      } catch (err) {
+        console.error("Erreur chargement catégories :", err);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   // Recherche en temps réel
   useEffect(() => {
     if (search.length > 1) {
@@ -41,7 +42,7 @@ export default function Header() {
   }, [search]);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50" >
+    <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-8xl mx-auto py-3 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
@@ -50,14 +51,18 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-6 flex-1 justify-center">
-          {categories.map((cat, index) => (
-            <NavLink key={index} to={`/categorie/${cat.nom}`} className="text-primaryBlue hover:text-secondaryBlue font-bold">
-              {cat.nom}
-            </NavLink>
-          ))}
+          {categories.map((cat, index) => {
+            const toPath = `/categorie/${cat.id}`;
+            console.log(`Lien généré pour cat[${index}] :`, toPath);
+            return (
+              <NavLink key={index} to={toPath} className="text-primaryBlue hover:text-secondaryBlue font-bold">
+                {cat.nom}
+              </NavLink>
+            );
+          })}
         </nav>
 
-        {/* Search (Desktop & Tablet) */}
+        {/* Search */}
         <div className="hidden sm:flex relative w-64 mr-6">
           <input
             type="text"
@@ -86,16 +91,20 @@ export default function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden px-4 pb-4 space-y-2">
-          {categories.map((cat, index) => (
-            <NavLink
-              key={index}
-              to={`/categorie/${cat.nom}`}
-              className="block text-primaryBlue hover:bg-primary  font-bold py-1"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {cat.nom}
-            </NavLink>
-          ))}
+          {categories.map((cat, index) => {
+            const toPath = `/categorie/${cat.id}`;
+            console.log(`Lien mobile pour cat[${index}] :`, toPath);
+            return (
+              <NavLink
+                key={index}
+                to={toPath}
+                className="block text-primaryBlue hover:bg-primary font-bold py-1"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {cat.nom}
+              </NavLink>
+            );
+          })}
           <div className="sm:hidden relative mt-2">
             <input
               type="text"
