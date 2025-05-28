@@ -2,7 +2,7 @@ const { Categorie } = require('../models');
 
 const getAllCategories = async () => {
   return await Categorie.findAll({
-    attributes: ['nom']
+    attributes: ['id', 'nom']
   });
 };
 
