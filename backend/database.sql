@@ -27,22 +27,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `artisans`
---
-
-CREATE TABLE `artisans` (
-  `id` int(11) NOT NULL,
-  `Nom` varchar(100) NOT NULL,
-  `specialite_id` int(11) NOT NULL,
-  `Note` decimal(2,1) NOT NULL,
-  `Ville` varchar(100) NOT NULL,
-  `A_propos` text NOT NULL,
-  `Email` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `catégories`
 --
 
@@ -63,15 +47,27 @@ CREATE TABLE `spécialités` (
   `categorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `artisans`
+--
+
+CREATE TABLE `artisans` (
+  `id` int(11) NOT NULL,
+  `Nom` varchar(100) NOT NULL,
+  `specialite_id` int(11) NOT NULL,
+  `Note` decimal(2,1) NOT NULL,
+  `Ville` varchar(100) NOT NULL,
+  `A_propos` text NOT NULL,
+  `Email` varchar(150) NOT NULL,
+  `Website` varchar(150) DEFAULT NULL,
+  `Image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `artisans`
---
-ALTER TABLE `artisans`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `catégories`
@@ -86,14 +82,14 @@ ALTER TABLE `spécialités`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `artisans`
+-- Index pour la table `artisans`
 --
 ALTER TABLE `artisans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
 
 --
 -- AUTO_INCREMENT pour la table `catégories`
@@ -105,6 +101,11 @@ ALTER TABLE `catégories`
 -- AUTO_INCREMENT pour la table `spécialités`
 --
 ALTER TABLE `spécialités`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `artisans`
+--
+ALTER TABLE `artisans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
