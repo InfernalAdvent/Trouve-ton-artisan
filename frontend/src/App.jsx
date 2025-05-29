@@ -6,6 +6,7 @@ import Footer from './components/Footer.jsx';
 import TopArtisansCard from './components/TopArtisansCard.jsx';
 import Blank from './pages/Blank.jsx';
 import Categorie from './pages/Categorie.jsx';
+import Artisan from './pages/Artisan.jsx';
 import api from "./api/axios";
 
 function Home() {
@@ -72,6 +73,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blank" element={<Blank />} />
           <Route path="/categorie/:id" element={<Categorie/>} />
+          <Route path="/artisan/:id" element={<Artisan/>} />
         </Routes>
       </main>
       <Footer />

@@ -8,7 +8,7 @@ const renderStars = (note) => {
   };
 
   return (
-    <div className="flex text-2xl space-x-1 text-primary">
+    <div className="flex text-2xl space-x-1 text-secondaryGreen">
       {[...renderStars(note)].map((star, i) => (
         <span key={i}>{star}</span>
       ))}

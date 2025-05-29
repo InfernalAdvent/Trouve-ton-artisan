@@ -67,12 +67,12 @@ export default function Header() {
           <input
             type="text"
             placeholder="Rechercher un artisan..."
-            className="w-full border border-primaryBlue rounded-3xl py-2 px-4 text-sm text-secondaryGrey"
+            className="w-full border border-secondaryGrey rounded-3xl py-2 px-4 text-sm text-secondaryGrey focus:outline-primaryBlue"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           {results.length > 0 && (
-            <ul className="absolute top-full left-0 w-full rounded-md mt-1 max-h-48 overflow-y-auto z-10">
+            <ul className="absolute top-full left-0 w-full bg-white rounded-md mt-1 max-h-48 overflow-y-auto z-10">
               {results.map((artisan) => (
                 <li key={artisan.id} className="text-primaryBlue px-4 py-2 hover:bg-primary">
                   <NavLink to={`/artisan/${artisan.id}`}>{artisan.Nom}</NavLink>
@@ -109,7 +109,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Rechercher un artisan..."
-              className="w-full border border-primaryBlue rounded-3xl py-2 px-4 text-sm text-secondaryGrey"
+              className="w-full border border-secondaryGrey rounded-3xl py-2 px-4 text-sm text-secondaryGrey focus:outline-primaryBlue"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
