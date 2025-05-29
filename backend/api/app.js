@@ -4,10 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const categorieRouter = require('./routes/categories');
 const artisanRouter = require ('./routes/artisans');
 
@@ -22,7 +22,6 @@ app.use(cors());
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/categories', categorieRouter);
 app.use('/artisans', artisanRouter)
 

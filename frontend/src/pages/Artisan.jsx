@@ -2,11 +2,15 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import Stars from "../components/Stars";
+import { useNavigate } from "react-router-dom"
 
 export default function Artisan() {
 
     const { id } = useParams();
     const [ artisan, setArtisan ] = useState(null);
+    const [status] = useState(null);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchArtisan = async () => {
@@ -22,6 +26,34 @@ export default function Artisan() {
     }, [id]);
 
     if (!artisan) return <p>Chargement...</p>
+
+    const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const data = {
+    prenom: formData.get('first-name'),
+    nom: formData.get('last-name'),
+    email: formData.get('email'),
+    objet: formData.get('object'),
+    message: formData.get('message'),
+  };
+
+  try {
+    const response = await api.post(`/artisans/${id}/contact`, data);
+    console.log("Réponse serveur :", response);
+
+    if (response.status === 201) {
+      alert("Message envoyé avec succès !");
+      navigate("/");
+    } else {
+      alert("Erreur lors de l'envoi du message.");
+    }
+  } catch (error) {
+    console.error("Erreur dans handleSubmit :", error);
+    alert("Erreur lors de l'envoi du message.");
+  }
+};
 
     return(
         <div className="max-w-5xl bg-primary mx-auto p-8 rounded-xl shadow-md">
@@ -56,7 +88,8 @@ export default function Artisan() {
             </div>
             <form 
             id="contact-form"
-            className="mt-10">
+            className="mt-10"
+            onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     
                     {/* Prénom */}
@@ -155,8 +188,12 @@ export default function Artisan() {
                     Envoyer
                     </button>
                 </div>
-                </form>
-
+            </form>
+            {status && (
+                <p className={`mt-4 ${status.includes("succès") ? "text-green-600" : "text-red-600"}`}>
+                    {status}
+                </p>
+            )}
         </div>
     );
 }
