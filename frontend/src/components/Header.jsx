@@ -62,7 +62,7 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Search */}
+        {/* Desktop & Tablet Searchbar */}
         <div className="hidden sm:flex relative w-64 mr-6">
           <input
             type="text"
@@ -75,20 +75,27 @@ export default function Header() {
             <ul className="absolute top-full left-0 w-full bg-white rounded-md mt-1 max-h-48 overflow-y-auto z-10">
               {results.map((artisan) => (
                 <li key={artisan.id} className="text-primaryBlue px-4 py-2 hover:bg-primary">
-                  <NavLink to={`/artisan/${artisan.id}`}>{artisan.Nom}</NavLink>
+                  <NavLink 
+                  to={`/artisan/${artisan.id}`}
+                  onClick = {() => {
+                    setSearch("");
+                    setResults([]);
+                  }}
+                  >{artisan.Nom}
+                  </NavLink>
                 </li>
               ))}
             </ul>
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile & Tablet Menu Toggle */}
         <button className="lg:hidden mr-6" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X size={28} className="text-primaryBlue" /> : <Menu size={28} className="text-primaryBlue" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile & Tablet Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden px-4 pb-4 space-y-2">
           {categories.map((cat, index) => {
@@ -117,7 +124,16 @@ export default function Header() {
               <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md mt-1 max-h-48 overflow-y-auto z-10">
                 {results.map((artisan) => (
                   <li key={artisan.id} className="text-primaryBlue px-4 py-2 hover:bg-primary">
-                    <NavLink to={`/artisan/${artisan.id}`}>{artisan.Nom}</NavLink>
+                    <NavLink 
+                    to={`/artisan/${artisan.id}`}
+                      onClick = {() => {
+                      setSearch("");
+                      setResults([]);
+                      setMobileMenuOpen(false);
+                    }}
+                    >
+                      {artisan.Nom}
+                      </NavLink>
                   </li>
                 ))}
               </ul>
