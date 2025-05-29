@@ -11,4 +11,5 @@ router.get('/', function(req, res, next) {
 router.use('/categories', categorieRoute);
 router.use('/artisans', artisanRoute)
 
+
 module.exports = router;

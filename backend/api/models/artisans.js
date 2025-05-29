@@ -9,6 +9,8 @@ const Artisan = sequelize.define('artisans', {
   Ville: DataTypes.STRING,
   A_propos: DataTypes.TEXT,
   Email: DataTypes.STRING,
+  Website: DataTypes.STRING,
+  Image: DataTypes.STRING
 });
 
 module.exports = Artisan;

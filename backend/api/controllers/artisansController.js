@@ -1,4 +1,5 @@
 const artisanService = require('../services/artisans');
+const nodemailer = require('nodemailer');
 
 const getArtisansByCategorie = async (req, res) => {
   const categorieId = req.params.id;
@@ -57,9 +58,35 @@ const getArtisanById = async (req, res) => {
   }
 };
 
+const contactArtisan = async (req, res) => {
+  const artisanId = req.params.id;
+  const { prenom, nom, email, objet, message } = req.body;
+
+  try {
+    const result = await artisanService.sendContactEmail({
+      artisanId,
+      prenom,
+      nom,
+      email,
+      objet,
+      message
+    });
+
+    if (result.success) {
+      res.status(201).json({ message: "Email envoyé avec succès." });
+    } else {
+      res.status(500).json({ error: result.error || "Échec de l'envoi de l'email." });
+    }
+  } catch (error) {
+    console.error("Erreur d'envoi de l'email :", error);
+    res.status(500).json({ error: "Erreur d'envoi de l'email." });
+  }
+};
+
 module.exports = {
   getArtisansByCategorie,
   getTopArtisans,
   searchArtisansByName,
-  getArtisanById
+  getArtisanById,
+  contactArtisan
 };
