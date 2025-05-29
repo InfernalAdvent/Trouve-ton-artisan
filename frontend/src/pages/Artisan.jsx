@@ -178,9 +178,9 @@ export default function Artisan() {
                         const button = e.currentTarget;
                         setTimeout(() => {
                         button.blur();
-                        }, 300);
+                        }, 50);
                     }}
-                    className="rounded-md px-3 py-2 text-sm font-semibold text-secondaryGrey hover:bg-secondaryRed hover:text-primary">Annuler</button>
+                    className="rounded-md px-3 py-2 text-sm font-semibold text-secondaryGrey focus:bg-secondaryRed focus:text-primary focus:">Annuler</button>
                     <button
                     type="submit"
                     className="rounded-md bg-secondaryBlue px-3 py-2 text-sm font-semibold text-primary shadow hover:bg-primaryBlue"
