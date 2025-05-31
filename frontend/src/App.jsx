@@ -4,7 +4,8 @@ import artisanImage from './assets/homme-travaillant-argile-vue-cote.jpg';
 import Header from './components/header.jsx';
 import Footer from './components/Footer.jsx';
 import TopArtisansCard from './components/TopArtisansCard.jsx';
-import Blank from './pages/Blank.jsx';
+import NotFound from './pages/NotFound.jsx';
+import Construction from './pages/Construction.jsx';
 import Categorie from './pages/Categorie.jsx';
 import Artisan from './pages/Artisan.jsx';
 import api from "./api/axios";
@@ -26,7 +27,7 @@ function Home() {
 
   return (
     <div>
-      <h1 className="max-w-7xl mx-auto py-12 text-3xl sm:text-4xl md:text-5xl font-bold text-primaryBlue text-left">
+      <h1 className="max-w-7xl mx-12 py-12 text-3xl sm:text-4xl md:text-5xl font-bold text-primaryBlue text-left">
         Comment trouver mon artisan ?
     </h1>
         <div className="flex flex-row items-center gap-20  w-full max-w-6xl mx-auto p-12">
@@ -71,9 +72,10 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blank" element={<Blank />} />
+          <Route path="/construction" element={<Construction />} />
           <Route path="/categorie/:id" element={<Categorie/>} />
           <Route path="/artisan/:id" element={<Artisan/>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </main>
       <Footer />

@@ -1,8 +1,8 @@
 import picture from '../assets/travaux.jpg'
 
-export default function Blank() {
+export default function Construction() {
   return (
-    <div className="max-w-6xl mx-auto p-8 rounded-xl flex items-center gap-8">
+    <div className="max-w-6xl mx-auto p-8 rounded-xl flex flex-col md:flex-row items-center gap-8">
       <img
         src={picture}
         alt="pictogramme de travaux"

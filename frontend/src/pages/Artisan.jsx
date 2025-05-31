@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import Stars from "../components/Stars";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
 
 export default function Artisan() {
 
     const { id } = useParams();
     const [ artisan, setArtisan ] = useState(null);
-    const [status] = useState(null);
     const navigate = useNavigate();
 
 
@@ -61,7 +61,7 @@ export default function Artisan() {
                 
                 {/* Image de l'artisan */}
                 <img
-                src={artisan.Image} // Remplace par ta source dynamique ou statique
+                src={artisan.Image} 
                 alt={`Photo de ${artisan.Nom}`}
                 className="w-full md:w-1/3 h-64 object-cover rounded-xl shadow"
                 />
@@ -137,7 +137,7 @@ export default function Artisan() {
                     </div>
                     </div>
 
-                    {/* Objet (raccourci avec col-span-2) */}
+                    {/* Objet */}
                     <div className="sm:col-span-3">
                     <label htmlFor="object" className="block text-sm font-medium text-secondaryGrey">Objet</label>
                     <div className="mt-2">
@@ -166,15 +166,15 @@ export default function Artisan() {
                     </div>
                 </div>
 
-                {/* Boutons alignés à droite */}
+                {/* Boutons */}
                 <div className="mt-6 flex justify-end gap-x-6">
                     <button 
                     type="button"
                     onClick={(e) => {
                         const form = document.getElementById("contact-form");
-                        form.reset(); // Réinitialise les champs
+                        form.reset(); // Vide le formulaire
 
-                        // Retire le focus du bouton après 300ms
+                        // Retire le focus du bouton après 50ms
                         const button = e.currentTarget;
                         setTimeout(() => {
                         button.blur();
@@ -189,11 +189,6 @@ export default function Artisan() {
                     </button>
                 </div>
             </form>
-            {status && (
-                <p className={`mt-4 ${status.includes("succès") ? "text-green-600" : "text-red-600"}`}>
-                    {status}
-                </p>
-            )}
         </div>
     );
 }
