@@ -4,15 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
+const PORT = process.env.PORT || 3000;
 
 
 const indexRouter = require('./routes/index');
 const categorieRouter = require('./routes/categories');
 const artisanRouter = require ('./routes/artisans');
-const allowedOrigins = [
-  'http://localhost:5173'
-];
+const allowedOrigins = ['http://localhost:5173'];
 
 const app = express();
 
@@ -37,8 +35,8 @@ app.use('/', indexRouter);
 app.use('/categories', categorieRouter);
 app.use('/artisans', artisanRouter)
 
-app.listen(3000, () => {
-  console.log('Serveur démarré sur http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
 });
 
 module.exports = app;
