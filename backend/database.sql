@@ -7,8 +7,8 @@
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
-CREATE DATABASE IF NOT EXISTS `trouve_ton_artisan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `trouve_ton_artisan`;
+CREATE DATABASE IF NOT EXISTS `bonrepaux_trouve_ton_artisan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bonrepaux_trouve_ton_artisan`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

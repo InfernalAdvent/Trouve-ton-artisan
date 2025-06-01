@@ -28,32 +28,32 @@ export default function Artisan() {
     if (!artisan) return <p>Chargement...</p>
 
     const handleSubmit = async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const data = {
-    prenom: formData.get('first-name'),
-    nom: formData.get('last-name'),
-    email: formData.get('email'),
-    objet: formData.get('object'),
-    message: formData.get('message'),
-  };
+    const formData = new FormData(event.target);
+    const data = {
+        prenom: formData.get('first-name'),
+        nom: formData.get('last-name'),
+        email: formData.get('email'),
+        objet: formData.get('object'),
+        message: formData.get('message'),
+    };
 
-  try {
-    const response = await api.post(`/artisans/${id}/contact`, data);
-    console.log("Réponse serveur :", response);
+    try {
+        const response = await api.post(`/artisans/${id}/contact`, data);
+        console.log("Réponse serveur :", response);
 
-    if (response.status === 201) {
-      alert("Message envoyé avec succès !");
-      navigate("/");
-    } else {
-      alert("Erreur lors de l'envoi du message.");
+        if (response.status === 201) {
+        alert("Message envoyé avec succès !");
+        navigate("/");
+        } else {
+        alert("Erreur lors de l'envoi du message.");
+        }
+    } catch (error) {
+        console.error("Erreur dans handleSubmit :", error);
+        alert("Erreur lors de l'envoi du message.");
     }
-  } catch (error) {
-    console.error("Erreur dans handleSubmit :", error);
-    alert("Erreur lors de l'envoi du message.");
-  }
-};
+    };
 
     return(
         <div className="max-w-5xl bg-primary mx-auto p-8 rounded-xl shadow-md">
@@ -75,7 +75,11 @@ export default function Artisan() {
                     <p className="mt-4 text-secondaryGrey">{artisan.A_propos || "Pas de description disponible."}</p>
                     {artisan.Website && (
                         <a
-                        href={artisan.Website}
+                        href={
+                            artisan.Website.startsWith("http") 
+                            ? artisan.Website 
+                            : `https://${artisan.Website}`
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-lg text-primaryBlue hover:font-bold mt-4"
