@@ -36,7 +36,7 @@ app.use('/categories', categorieRouter);
 app.use('/artisans', artisanRouter)
 
 app.listen(PORT, () => {
-  console.log('Serveur démarré sur http://localhost:3000');
+  console.log(`Serveur démarré sur le port ${PORT}`);
 });
 
 module.exports = app;
