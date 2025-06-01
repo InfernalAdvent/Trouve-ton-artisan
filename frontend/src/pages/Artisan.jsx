@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import Stars from "../components/Stars";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
 
 export default function Artisan() {
 
     const { id } = useParams();
     const [ artisan, setArtisan ] = useState(null);
-    const [status] = useState(null);
     const navigate = useNavigate();
 
 
@@ -28,32 +28,32 @@ export default function Artisan() {
     if (!artisan) return <p>Chargement...</p>
 
     const handleSubmit = async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const data = {
-    prenom: formData.get('first-name'),
-    nom: formData.get('last-name'),
-    email: formData.get('email'),
-    objet: formData.get('object'),
-    message: formData.get('message'),
-  };
+    const formData = new FormData(event.target);
+    const data = {
+        prenom: formData.get('first-name'),
+        nom: formData.get('last-name'),
+        email: formData.get('email'),
+        objet: formData.get('object'),
+        message: formData.get('message'),
+    };
 
-  try {
-    const response = await api.post(`/artisans/${id}/contact`, data);
-    console.log("Réponse serveur :", response);
+    try {
+        const response = await api.post(`/artisans/${id}/contact`, data);
+        console.log("Réponse serveur :", response);
 
-    if (response.status === 201) {
-      alert("Message envoyé avec succès !");
-      navigate("/");
-    } else {
-      alert("Erreur lors de l'envoi du message.");
+        if (response.status === 201) {
+        alert("Message envoyé avec succès !");
+        navigate("/");
+        } else {
+        alert("Erreur lors de l'envoi du message.");
+        }
+    } catch (error) {
+        console.error("Erreur dans handleSubmit :", error);
+        alert("Erreur lors de l'envoi du message.");
     }
-  } catch (error) {
-    console.error("Erreur dans handleSubmit :", error);
-    alert("Erreur lors de l'envoi du message.");
-  }
-};
+    };
 
     return(
         <div className="max-w-5xl bg-primary mx-auto p-8 rounded-xl shadow-md">
@@ -61,7 +61,7 @@ export default function Artisan() {
                 
                 {/* Image de l'artisan */}
                 <img
-                src={artisan.Image} // Remplace par ta source dynamique ou statique
+                src={artisan.Image} 
                 alt={`Photo de ${artisan.Nom}`}
                 className="w-full md:w-1/3 h-64 object-cover rounded-xl shadow"
                 />
@@ -75,7 +75,11 @@ export default function Artisan() {
                     <p className="mt-4 text-secondaryGrey">{artisan.A_propos || "Pas de description disponible."}</p>
                     {artisan.Website && (
                         <a
-                        href={artisan.Website}
+                        href={
+                            artisan.Website.startsWith("http") 
+                            ? artisan.Website 
+                            : `https://${artisan.Website}`
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-lg text-primaryBlue hover:font-bold mt-4"
@@ -137,7 +141,7 @@ export default function Artisan() {
                     </div>
                     </div>
 
-                    {/* Objet (raccourci avec col-span-2) */}
+                    {/* Objet */}
                     <div className="sm:col-span-3">
                     <label htmlFor="object" className="block text-sm font-medium text-secondaryGrey">Objet</label>
                     <div className="mt-2">
@@ -166,15 +170,15 @@ export default function Artisan() {
                     </div>
                 </div>
 
-                {/* Boutons alignés à droite */}
+                {/* Boutons */}
                 <div className="mt-6 flex justify-end gap-x-6">
                     <button 
                     type="button"
                     onClick={(e) => {
                         const form = document.getElementById("contact-form");
-                        form.reset(); // Réinitialise les champs
+                        form.reset(); // Vide le formulaire
 
-                        // Retire le focus du bouton après 300ms
+                        // Retire le focus du bouton après 50ms
                         const button = e.currentTarget;
                         setTimeout(() => {
                         button.blur();
@@ -189,11 +193,6 @@ export default function Artisan() {
                     </button>
                 </div>
             </form>
-            {status && (
-                <p className={`mt-4 ${status.includes("succès") ? "text-green-600" : "text-red-600"}`}>
-                    {status}
-                </p>
-            )}
         </div>
     );
 }

@@ -7,46 +7,46 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                 <ul className="hidden md:block">
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/construction">
                         Mentions légales
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/construction">
                         Données personnelles
                         </NavLink>
                     </li>
                 </ul>
                 <ul className="hidden md:block">
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/construction">
                         Accessibilité
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-10" to="/construction">
                         Cookies
                         </NavLink>
                     </li>
                 </ul>
                 <ul className="block md:hidden">
                      <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/construction">
                         Mentions légales
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/construction">
                         Données personnelles
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/construction">
                         Accessibilité
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/blank">
+                        <NavLink className="text-primaryBlue hover:text-secondaryBlue font-bold leading-7" to="/construction">
                         Cookies
                         </NavLink>
                     </li>
@@ -62,6 +62,6 @@ export default function Footer() {
               </address>
 
             </div>
-        </footer>
+        </footer>     
     )
 }

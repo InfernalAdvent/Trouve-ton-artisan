@@ -25,7 +25,7 @@ export default function Categorie() {
         }
         setCategorieNom(categorie.nom);
 
-        // 2. Récupérer les artisans liés à la catégorie
+        //  Récupère les artisans liés à la catégorie
         const res = await api.get(`/categories/${id}/artisans`);
         console.log("Artisans reçus :", res.data);
         setArtisans(res.data);
