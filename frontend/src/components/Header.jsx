@@ -42,7 +42,7 @@ export default function Header() {
   }, [search]);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-primary shadow-md sticky top-0 z-50">
       <div className="max-w-8xl mx-auto py-3 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">

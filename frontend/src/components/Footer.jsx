@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Footer() {
 
     return (
-        <footer className="bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.1)] sticky bottom-0 z-50">
+        <footer className="bg-primary shadow-[0_-4px_10px_rgba(0,0,0,0.1)] sticky bottom-0 z-50">
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                 <ul className="hidden md:block">
                     <li>
