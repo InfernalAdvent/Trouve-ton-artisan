@@ -30,7 +30,7 @@ function Home() {
       <h1 className="max-w-7xl mx-12 py-12 text-3xl sm:text-4xl md:text-5xl font-bold text-primaryBlue text-left">
         Comment trouver mon artisan ?
     </h1>
-        <div className="flex flex-row items-center gap-20  w-full max-w-6xl mx-auto p-12">
+        <div className="flex flex-col md:flex-row items-center gap-20  w-full max-w-6xl mx-auto p-12">
           <img
             src={artisanImage}
             alt="Illustration artisan travaillant l'argile"
