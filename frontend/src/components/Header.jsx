@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import api from "../api/axios";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
