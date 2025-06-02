@@ -12,7 +12,7 @@ const categorieRouter = require('./routes/categories');
 const artisanRouter = require ('./routes/artisans');
 const allowedOrigins = [
   'http://localhost:5173',
-'https://trouve-ton-artisan-f3hjfanz1-infernaladvents-projects.vercel.app'];
+'https://trouve-ton-artisan-nu.vercel.app'];
 
 const app = express();
 
@@ -22,13 +22,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = "Cette origine n'est pas autorisée par CORS";
-      return callback(new Error(msg), false);
+  origin: function (origin, callback) {
+    console.log("CORS Origin:", origin);
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
     }
-    return callback(null, true);
   }
 }));
 
