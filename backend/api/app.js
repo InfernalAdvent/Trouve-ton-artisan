@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 3000;
 const indexRouter = require('./routes/index');
 const categorieRouter = require('./routes/categories');
 const artisanRouter = require ('./routes/artisans');
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:5173',
+'https://trouve-ton-artisan-f3hjfanz1-infernaladvents-projects.vercel.app'];
 
 const app = express();
 
