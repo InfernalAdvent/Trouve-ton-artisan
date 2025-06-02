@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import artisanImage from './assets/homme-travaillant-argile-vue-cote.jpg';
-import Header from './components/header.jsx';
+import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import TopArtisansCard from './components/TopArtisansCard.jsx';
 import NotFound from './pages/NotFound.jsx';
