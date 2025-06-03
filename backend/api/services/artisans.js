@@ -73,7 +73,7 @@ const sendContactEmail = async ({ artisanId, prenom, nom, email, objet, message 
     }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // Ou 'outlook', 'hotmail'
+      service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
